@@ -6,7 +6,7 @@ import urllib.request
 import googlemaps
 import csv
 
-
+mySearch = "volcanoes"
 
 
 
@@ -79,74 +79,85 @@ except Exception as e:
 
 
 #given a search, returns the link to the search results page
-def getSrc (mySearch, numResults , numPages):
-	source = urllib.request.urlopen('http://www.sciencedirect.com/search?qs=' + mySearch +  '&show=' + numResults + '&sortBy=relevance&articleTypes=FLA&lastSelectedFacet=articleTypes')
-	return source
+def getSrc (mySearch, numResults , pageNum):
+	if pageNum is 0:
+		source = urllib.request.urlopen('http://www.sciencedirect.com/search?qs=' + mySearch +  '&show=' + numResults + '&sortBy=relevance&articleTypes=FLA&lastSelectedFacet=articleTypes')
+		return source
+	else :
+		source = urllib.request.urlopen('http://www.sciencedirect.com/search?qs=' + mySearch + '&authors=&pub=&volume=&issue=&page=&origin=home&zone=qSearch&show='+ numResults + '&offset=' + str(pageNum * numResults))
+		return source
 
 
 
-source = getSrc("coastal", str(100) , 1)
+def scrape ():
+	print("START")
+	f = open("abstracts.txt", "a")
+	i = 0
+	for url in soup.find_all('a'):
 
-soup = bs.BeautifulSoup(source, 'lxml')
-
-
-# 
-
-
-
-f = open("abstracts.txt", "r+")
-
-
-i = 0
-for url in soup.find_all('a'):
-
-	if "/science/article" not in url.get('href'):
-		pass
-	else:
-		thisLink =  url.get('href')
-		print(thisLink)
-		
-		try:
-			source2 = urllib.request.urlopen("http://www.sciencedirect.com" + thisLink ).read()
+		if "/science/article" not in url.get('href'):
 			pass
-		except Exception as e:
-			i = i + 1
-			print(e)
-			continue
-		finally:
-			pass
-		
-		
-		soup2 = bs.BeautifulSoup(source2, 'lxml')
-		
-		title = soup2.title.string
-		for paragraph in soup2.find_all('p'):
+		else:
+			thisLink =  url.get('href')
+			print(thisLink)
 			
-			abstract = paragraph.text
-
 			try:
-
-				f.write("TITLE " + title +" title ")
-				f.write(abstract)
+				source2 = urllib.request.urlopen("http://www.sciencedirect.com" + thisLink ).read()
 				pass
 			except Exception as e:
+				
 				print(e)
 				continue
+			finally:
+				pass
 			
+			i = i + 1
+			soup2 = bs.BeautifulSoup(source2, 'lxml')
+			
+			title = soup2.title.string
+			for paragraph in soup2.find_all('p'):
+				
+				abstract = paragraph.text
 
-			#print(paragraph.text)
+				try:
 
-		pass
+					f.write("TITLE " + title +" title ")
+					f.write(abstract)
+					pass
+				except Exception as e:
+					print(e)
+					continue
+				
+
+				#print(paragraph.text)
+
+			pass
 
 
 
 
-		#results[i] = url.get('href')
-		
-				#print(url.get('href'))
+			#results[i] = url.get('href')
+			
+					#print(url.get('href'))
 
-	# url.get('href').contains("/science/article") :
-pass
+		# url.get('href').contains("/science/article") :
+	pass
+	f.close()
+
+
+
+source = getSrc(mySearch, str(100) , 0)
+soup = bs.BeautifulSoup(source, 'lxml')
+scrape()
+
+source = getSrc(mySearch, str(100), 1)
+soup = bs.BeautifulSoup(source, 'lxml')
+scrape()
+
+source = getSrc(mySearch, str(100), 2)
+soup = bs.BeautifulSoup(source, 'lxml')
+scrape()
+
 
 
 def findMatches (abstracts):
@@ -171,7 +182,7 @@ def findMatches (abstracts):
 	        	except Exception as e:
 	        		continue
 	return matches
-f.close()
+
 
 f = open("abstracts.txt", "r" )
 
@@ -204,10 +215,9 @@ writeCsv()
 
 
 print("matches" + findMatches(f))
+amtAbtstracts= str(i)
 
-#errors = str(i)
-
-#print( errors + ' errors' )
+print('scraped from ' + amtAbtstracts + 'articles')
 
 f.close()
 
@@ -215,6 +225,64 @@ f.close()
 
 
 
+# 
+
+
+
+# f = open("abstracts.txt", "r+")
+
+
+# i = 0
+# for url in soup.find_all('a'):
+
+# 	if "/science/article" not in url.get('href'):
+# 		pass
+# 	else:
+# 		thisLink =  url.get('href')
+# 		print(thisLink)
+		
+# 		try:
+# 			source2 = urllib.request.urlopen("http://www.sciencedirect.com" + thisLink ).read()
+# 			pass
+# 		except Exception as e:
+# 			i = i + 1
+# 			print(e)
+# 			continue
+# 		finally:
+# 			pass
+		
+		
+# 		soup2 = bs.BeautifulSoup(source2, 'lxml')
+		
+# 		title = soup2.title.string
+# 		for paragraph in soup2.find_all('p'):
+			
+# 			abstract = paragraph.text
+
+# 			try:
+
+# 				f.write("TITLE " + title +" title ")
+# 				f.write(abstract)
+# 				pass
+# 			except Exception as e:
+# 				print(e)
+# 				continue
+			
+
+# 			#print(paragraph.text)
+
+# 		pass
+
+
+
+
+# 		#results[i] = url.get('href')
+		
+# 				#print(url.get('href'))
+
+# 	# url.get('href').contains("/science/article") :
+# pass
+# f.close()
 
 
 

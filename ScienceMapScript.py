@@ -6,23 +6,13 @@ import urllib.request
 import googlemaps
 import csv
 
-mySearch = "volcanoes"
-
-
-
-dict = {"United states" : 0}
-
-gmaps = googlemaps.Client(key='AIzaSyD514l8769WgSlvobVZsOtBVbok5MfGWOE')
-
-
-
-def addCountries1 ():
+def addCountries ():
 	with open ("CountriesCoord.rtf", "r") as file:
 		#readCSV = csv.reader(file, delimiter=',')
 
 		for line in file:
 			line = line.replace('\n' , '')
-			tokens = [0 ] * 3
+			tokens = [0] * 3
 			i = 0
 			for word in line.split(","):
 				tokens[i] = word
@@ -51,9 +41,7 @@ def addCities():
 	cities.close()
 
 
-#addCountries1()
-print(dict)
-addCities()
+
 
 
 
@@ -69,14 +57,7 @@ addCities()
 #link to the search results. Generalized to allow for change in query, (but not author/vol/issue/page)
 #source = urllib.request.urlopen('http://www.sciencedirect.com/search?qs=' + (mySearch) + '&authors=&pub=&volume=&issue=&page=&origin=home&zone=qSearch&show='+ numResults).read()
 
-try:
-	print(dict['a'])
-
-	pass
-except Exception as e:
-	#print (e)
-	print(dict.values())
-
+#print(dict.values())
 
 #given a search, returns the link to the search results page
 def getSrc (mySearch, numResults , pageNum):
@@ -88,11 +69,11 @@ def getSrc (mySearch, numResults , pageNum):
 		return source
 
 
-
-def scrape ():
-	print("START")
-	f = open("abstracts.txt", "a")
+def scrape (soup):
 	i = 0
+	
+	f = open("abstracts.txt", "a")
+	
 	for url in soup.find_all('a'):
 
 		if "/science/article" not in url.get('href'):
@@ -111,17 +92,19 @@ def scrape ():
 			finally:
 				pass
 			
-			i = i + 1
+			
 			soup2 = bs.BeautifulSoup(source2, 'lxml')
 			
 			title = soup2.title.string
+			i = i + 1
 			for paragraph in soup2.find_all('p'):
 				
 				abstract = paragraph.text
 
+
 				try:
 
-					f.write("TITLE " + title +" title ")
+					f.write("TITLE " + title )
 					f.write(abstract)
 					pass
 				except Exception as e:
@@ -143,20 +126,11 @@ def scrape ():
 		# url.get('href').contains("/science/article") :
 	pass
 	f.close()
+	return i
 
 
 
-source = getSrc(mySearch, str(100) , 0)
-soup = bs.BeautifulSoup(source, 'lxml')
-scrape()
 
-source = getSrc(mySearch, str(100), 1)
-soup = bs.BeautifulSoup(source, 'lxml')
-scrape()
-
-source = getSrc(mySearch, str(100), 2)
-soup = bs.BeautifulSoup(source, 'lxml')
-scrape()
 
 
 
@@ -184,14 +158,8 @@ def findMatches (abstracts):
 	return matches
 
 
-f = open("abstracts.txt", "r" )
 
-matchesToken  = findMatches(f).split(",")        		
-
-
-print(matchesToken)
-
-def writeCsv ():
+def writeCsv (matchesToken):
 	with open ('results.csv' , 'w') as file:
 	    fieldnames = ['place', 'lat', 'long']
 	    writer = csv.DictWriter(file , fieldnames=fieldnames)
@@ -201,25 +169,58 @@ def writeCsv ():
 	    	writer.writerow( {'place' : matchesToken[i] , 'lat' : matchesToken[i+1] , 'long' : matchesToken[i+2]})
 	    	i = i + 3
 	    	pass
+
+
+
+#Just supports multiples of 100 for now (numresults)
+def searchScrape (search, numResults):
+	counter = 0
+	k = 0
+	while k < numResults/100:
+		source = getSrc(search, str(numResults) , k)
+		soup = bs.BeautifulSoup(source, 'lxml')
+
+		counter = counter + scrape(soup)
+		f = open("abstracts.txt", "r" )
+		matchesToken  = findMatches(f).split(",")
+		print(matchesToken)    	
+		writeCsv(matchesToken)
+		k = k + 1
+	print("Counter" + str(counter))
+
+
 	   
-	    	
-			
-			
-			
+# source = getSrc(mySearch, str(100) , 0)
+# soup = bs.BeautifulSoup(source, 'lxml')
+# scrape()
 
-    	
+# source = getSrc(mySearch, str(100), 1)
+# soup = bs.BeautifulSoup(source, 'lxml')
+# scrape()
 
+# source = getSrc(mySearch, str(100), 2)
+# soup = bs.BeautifulSoup(source, 'lxml')
+# scrape()
+
+dict = {"United states" : 0}
+addCountries()
+print(dict)
+addCities()
+
+
+
+searchScrape('Chocolate', 100)			
+			
 		
 		
-writeCsv()
+#writeCsv()
 
 
-print("matches" + findMatches(f))
-amtAbtstracts= str(i)
+#print("matches" + findMatches(f))
+# amtAbtstracts = str(amtAbtstracts)
 
-print('scraped from ' + amtAbtstracts + 'articles')
+# print('scraped from ' + amtAbtstracts + 'articles')
 
-f.close()
 
 
 

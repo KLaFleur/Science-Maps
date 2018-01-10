@@ -73,21 +73,24 @@ def scrape (soup):
 	i = 0
 	
 	f = open("abstracts.txt", "a")
-	
+	links = ' '
 	for url in soup.find_all('a'):
+		thisLink =  url.get('href')
 
-		if "/science/article" not in url.get('href'):
+		if "/science/article" not in thisLink:
 			pass
-		else:
-			thisLink =  url.get('href')
+
+		elif thisLink not in links and '.pdf' not in thisLink:
+			
 			print(thisLink)
+			links = links + ' ' + thisLink
 			
 			try:
 				source2 = urllib.request.urlopen("http://www.sciencedirect.com" + thisLink ).read()
 				pass
 			except Exception as e:
 				
-				print(e)
+				#print(e)
 				continue
 			finally:
 				pass
@@ -108,7 +111,7 @@ def scrape (soup):
 					f.write(abstract)
 					pass
 				except Exception as e:
-					print(e)
+					#print(e)
 					continue
 				
 
@@ -136,31 +139,34 @@ def scrape (soup):
 
 def findMatches (abstracts):
 	matches = ' ' 
-	
-
+	j= 0
 	for line in abstracts:
-	        for word in line.split():
-	        	try:
 
+	        for word in line.split():
+	        	print(word)
+
+	        	try:
+	        		j = j + 1
 	        		#if dict[word] is not null : #and dict[word] not in matches
 	        		if dict[word] not in matches:
-	        			print(word)
+	        			
 		        		print(dict[word])
 		        		#dict[word].key()
 		        		wordAtHand = word + ',' + dict[word]
-		        		matches = matches + wordAtHand + ", "
+		        		matches = matches + wordAtHand + ','
 		        		matchKeys = matchKeys + word
 
 	           		
 	        		pass
 	        	except Exception as e:
 	        		continue
+	print(j)
 	return matches
 
 
 
 def writeCsv (matchesToken):
-	with open ('results.csv' , 'w') as file:
+	with open ('results.csv' , 'a') as file:
 	    fieldnames = ['place', 'lat', 'long']
 	    writer = csv.DictWriter(file , fieldnames=fieldnames)
 	    writer.writeheader()
@@ -181,12 +187,10 @@ def searchScrape (search, numResults):
 		soup = bs.BeautifulSoup(source, 'lxml')
 
 		counter = counter + scrape(soup)
-		f = open("abstracts.txt", "r" )
-		matchesToken  = findMatches(f).split(",")
-		print(matchesToken)    	
-		writeCsv(matchesToken)
+		
 		k = k + 1
 	print("Counter" + str(counter))
+	
 
 
 	   
@@ -209,9 +213,20 @@ addCities()
 
 
 
-searchScrape('Chocolate', 100)			
+#searchScrape('volcanoes', 5000)	
+f = open("abstracts.txt", "r+" )
+matchesToken  = findMatches(f).split(",")
+print(matchesToken)    	
+writeCsv(matchesToken)
+f.close()
+
+# f = open("abstracts.txt", "r" )
+# matchesToken  = findMatches(f).split(",")	
+# print(matchesToken)    	
+# writeCsv(matchesToken)
+# f.close()
 			
-		
+
 		
 #writeCsv()
 

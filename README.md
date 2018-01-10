@@ -11,7 +11,7 @@ Overview
 
 Next Steps 
 
-	Add support for U.S National park, protected areas, and forests around the world 
+	Add support for U.S National parks, protected areas, and forests around the world 
 
 	Look into an issue where the scraper returns 404 errors on ~15% of links it runs
 
@@ -19,6 +19,7 @@ Next Steps
 
 	Add comments to functions 
 
+	Clean out old, commented out code 
 
 
 

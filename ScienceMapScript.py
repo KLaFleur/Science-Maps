@@ -62,10 +62,14 @@ def addCities():
 #given a search, returns the link to the search results page
 def getSrc (mySearch, numResults , pageNum):
 	if pageNum is 0:
-		source = urllib.request.urlopen('http://www.sciencedirect.com/search?qs=' + mySearch +  '&show=' + numResults + '&sortBy=relevance&articleTypes=FLA&lastSelectedFacet=articleTypes')
+		sourceLink = 'http://www.sciencedirect.com/search?qs=' + mySearch +  '&show=' + numResults + '&sortBy=relevance&articleTypes=FLA&lastSelectedFacet=articleTypes'
+		print(sourceLink)
+		source = urllib.request.urlopen(sourceLink)
 		return source
 	else :
-		source = urllib.request.urlopen('http://www.sciencedirect.com/search?qs=' + mySearch + '&authors=&pub=&volume=&issue=&page=&origin=home&zone=qSearch&show='+ numResults + '&offset=' + str(pageNum * numResults))
+		sourceLink = 'http://www.sciencedirect.com/search?qs=' + mySearch + '&authors=&pub=&volume=&issue=&page=&origin=home&zone=qSearch&show='+ str(100) + '&offset=' + str(100 * pageNum)
+		print(sourceLink)
+		source = urllib.request.urlopen(sourceLink)
 		return source
 
 
@@ -143,7 +147,7 @@ def findMatches (abstracts):
 	for line in abstracts:
 
 	        for word in line.split():
-	        	print(word)
+	    
 
 	        	try:
 	        		j = j + 1
@@ -162,6 +166,7 @@ def findMatches (abstracts):
 	        		continue
 	print(j)
 	return matches
+	abstracts.close()
 
 
 
@@ -185,11 +190,12 @@ def searchScrape (search, numResults):
 	while k < numResults/100:
 		source = getSrc(search, str(numResults) , k)
 		soup = bs.BeautifulSoup(source, 'lxml')
-
-		counter = counter + scrape(soup)
+		#counter = counter + 
+		scrape(soup)
+		
 		
 		k = k + 1
-	print("Counter" + str(counter))
+	#print("Counter" + str(counter))
 	
 
 
@@ -213,8 +219,8 @@ addCities()
 
 
 
-#searchScrape('volcanoes', 5000)	
-f = open("abstracts.txt", "r+" )
+searchScrape('cities', 500)	
+f = open("abstracts.txt", "r" )
 matchesToken  = findMatches(f).split(",")
 print(matchesToken)    	
 writeCsv(matchesToken)

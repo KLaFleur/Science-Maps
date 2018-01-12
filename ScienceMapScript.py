@@ -57,18 +57,22 @@ def getSrc (mySearch, numResults , pageNum):
 		source = urllib.request.urlopen(sourceLink)
 		return source
 
-
+#scrapes the text in the abstracts from the page specified in the beautiful soup object passed as input and writes them to 'Abstracts.txt'
 def scrape (soup):
 	i = 0
 	
 	f = open("abstracts.txt", "a")
 	links = ' '
+
+	#iterates through all the links in the search page
 	for url in soup.find_all('a'):
 		thisLink =  url.get('href')
 
+		#cleans out all links that dont reference article pages
 		if "/science/article" not in thisLink:
 			pass
 
+		#cleans out all links that have already been run and those that point to .pdf pages(which yeild redundant info)	
 		elif thisLink not in links and '.pdf' not in thisLink:
 			
 			print(thisLink)
@@ -90,11 +94,10 @@ def scrape (soup):
 			title = soup2.title.string
 
 			i = i + 1
+			#iterates through the paragraphs in the article page and writes them to the file (usually just the abstract + an extranious sentence or two)
 			for paragraph in soup2.find_all('p'):
 				
 				abstract = paragraph.text
-
-
 				try:
 					
 					f.write(title)
@@ -123,7 +126,7 @@ def scrape (soup):
 	f.close()
 	return i
 
-
+#takes as input a file (abstracts.txt) and returns a string and returns a string of matches formated as 'place, Latitude, Longitude'
 def findMatches (abstracts):
 	matches = ' ' 
 	j= 0
@@ -131,7 +134,6 @@ def findMatches (abstracts):
 
 	        for word in line.split():
 	    
-
 	        	try:
 	        		j = j + 1
 	        		#if dict[word] is not null : #and dict[word] not in matches
@@ -151,7 +153,7 @@ def findMatches (abstracts):
 	return matches
 	abstracts.close()
 
-
+#Takes as input a list of matches formatted as [place, latitude, longitude] and writes them to a .csv file
 def writeCsv (matchesToken):
 	with open ('results.csv' , 'a') as file:
 	    fieldnames = ['place', 'lat', 'long']
@@ -188,7 +190,7 @@ print(dict)
 addCities()
 
 
-searchScrape('earthquakes', 600)	
+#searchScrape('mountains', 2000)	
 
 #Write as function?
 f = open("abstracts.txt", "r" )

@@ -1,7 +1,9 @@
 # Science-Maps
 Overview
 
-	This project takes as input a scientific research topic and a number of articles to scrape from and returns a csv of 	     locations found in the abstracts of the articles returned by the desired search (using sciencedirect.com).
+	This project takes as input a scientific research topic and a 
+	number of articles to scrape from and returns a csv of locations 
+	found in the abstracts of the articles returned by the desired search (using sciencedirect.com).
 	
 
 

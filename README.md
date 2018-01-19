@@ -4,6 +4,8 @@ Overview
 	This project takes as input a scientific research topic and a 
 	number of articles to scrape from and returns a csv of locations 
 	found in the abstracts of the articles returned by the desired search (using sciencedirect.com).
+	The user imports the csv to google maps. An example map with many layers can be found at 
+	https://drive.google.com/open?id=1uSapi_Us20bfaV65zegpFPFT6kr9oFDk&usp=sharing .
 	
 
 
@@ -18,9 +20,6 @@ Next Steps
 
 	Link location results to the title of the article from which they came 
 
-	Add comments to functions 
-
-	Clean out old, commented out code 
 
 
 

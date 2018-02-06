@@ -1,5 +1,5 @@
 # Science-Maps
-<<<<<<< HEAD
+
 Overview
 
 	This project takes as input a search for something that would be the subject of scientific research, 
@@ -25,6 +25,5 @@ Next Steps
 
 
 
-=======
->>>>>>> f9a39440cd62324d0f3f09ba47d4147742630fba
+
 

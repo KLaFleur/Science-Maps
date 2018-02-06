@@ -57,6 +57,9 @@ def getSrc (mySearch, numResults , pageNum):
 		source = urllib.request.urlopen(sourceLink)
 		return source
 
+
+
+
 #scrapes the text in the abstracts from the page specified in the beautiful soup object passed as input and writes them to 'Abstracts.txt'
 def scrape (soup):
 	i = 0
@@ -130,25 +133,36 @@ def scrape (soup):
 def findMatches (abstracts):
 	matches = ' ' 
 	j= 0
+	prevWord = ' '
 	for line in abstracts:
 
-	        for word in line.split():
-	    
-	        	try:
-	        		j = j + 1
-	        		#if dict[word] is not null : #and dict[word] not in matches
-	        		if dict[word] not in matches:
-	        			
-		        		print(dict[word])
-		        		#dict[word].key()
-		        		wordAtHand = word + ',' + dict[word]
-		        		matches = matches + wordAtHand + ','
-		        		matchKeys = matchKeys + word
 
-	           		
-	        		pass
-	        	except Exception as e:
-	        		continue
+	    for word in line.split():
+	    
+	        try:
+	        	j = j + 1
+	        	#if dict[word] is not null : #and dict[word] not in matches
+	        	if dict[word] not in matches:
+	        			
+		        	print(dict[word])
+		        	#dict[word].key()
+		        	wordAtHand = word + ',' + dict[word]
+		        	matches = matches + wordAtHand + ','
+		        	matchKeys = matchKeys + word
+
+		        #checks for 2 word entries. This block doesnt seem to be working yet
+		        if dict[prevWord + ' ' + word] not in matches:
+		        	print(dict[prevWord + ' ' + word].key())
+		        	wordAtHand = prevWord + ' ' + word + ',' + dict[prevWord + ' ' + word]
+		        	matches = matches +wordAtHand
+		        	matchKeys = matchKeys + (prevWord + ' ' + word)
+		        prevWord = word	
+
+
+	           	
+	        	pass
+	        except Exception as e:
+	        	continue
 	print(j)
 	return matches
 	abstracts.close()
@@ -186,11 +200,11 @@ def searchScrape (search, numResults): #numResults just supports multiples of 10
 #Creates a dictionary where the keys are location names (String) and the values are a String formmated as 'lat,long'
 dict = {"United states" : '37.09024,-95.712891'}
 addCountries()
-print(dict)
 addCities()
+print(dict)
 
 
-#searchScrape('mountains', 2000)	
+searchScrape('subduction', 600)	
 
 #Write as function?
 f = open("abstracts.txt", "r" )

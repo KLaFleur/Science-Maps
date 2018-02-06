@@ -1,8 +1,8 @@
 # Science-Maps
-<<<<<<< HEAD
-=======
 
->>>>>>> 7ed372d86c2500719db6770c677d2165ee3b0915
+
+
+
 Overview
 
 	This project takes as input a search for something that would be the subject of scientific research, 

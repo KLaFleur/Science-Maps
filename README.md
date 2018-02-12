@@ -17,11 +17,11 @@ searches can be found [here](https://drive.google.com/open?id=1uSapi_Us20bfaV65z
 
 Integrate a named entity recognition tool, coupled with the geocoding function of the Google Maps API to detect and get coordinates for locations that aren't loaded into the dictionary. 
 
-Add support for protected areas, mountain ranges, and forests around the world(only U.S. National parks are supported now)
+Add support for protected areas, mountain ranges, and forests around the world(only U.S. National parks are supported as of now)
 
 Look into an issue where the scraper returns 404 errors on ~25% of links it runs 
 
-Link location results to the title of the article from which they came
+Link location results to the title of the article that they came from 
 
 
 ​	

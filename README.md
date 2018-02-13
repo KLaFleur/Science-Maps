@@ -16,7 +16,7 @@ searches can be found [here](https://drive.google.com/open?id=1uSapi_Us20bfaV65z
 ## Next Steps  
 
 ### looking for bias
-Look into using [sentiment analysis] (https://en.wikipedia.org/wiki/Sentiment_analysis) to expose patterns in attitudes around polarizing topics like mental illness as they relate to location.
+* Look into using [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) to expose patterns in attitudes around polarizing topics like mental illness as they relate to location.
 
 ### improving existing functions
 

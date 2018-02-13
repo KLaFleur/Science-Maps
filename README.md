@@ -8,7 +8,7 @@ imports the csv to google maps. An example map with results from a few different
 searches can be found [here](https://drive.google.com/open?id=1uSapi_Us20bfaV65zegpFPFT6kr9oFDk&usp=sharing).
 
 ## Usage
-I wrote this script as a tool to discover trends in research practices. These insights are meaningful on a few levels. For one, it's fun to check out patterns in research for certain animals, plants, or geographical features ( [figure 1](###Fig. 1) ) . On a more serious note, the script can illuminate imbalances in research location, which can have serious social implications and dire consequences for the integrity of the research as conclusions are weaker and more dangerous when certain populations or areas are underrepresented. 
+I wrote this script as a tool to discover trends in research practices. These insights are meaningful on a few levels. For one, it's fun to check out patterns in research for certain animals, plants, or geographical features ([figure 1](https://github.com/KLaFleur/Science-Maps#fig-1) ) . On a more serious note, the script can illuminate imbalances in research location, which can have serious social implications and dire consequences for the integrity of the research as conclusions are weaker and more dangerous when certain populations or areas are underrepresented. 
 ### Fig. 1
 
 Combined results from searches on "volcanoes" and "earthquakes" clearly outline tectonic plate boundaries

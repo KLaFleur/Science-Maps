@@ -3,6 +3,8 @@
 
 ## Usage
 I wrote this script as a tool to discover trends in research practices. These insights are meaningful on a few levels. For one, it's fun to check out patterns in research for certain animals, plants, or geographical features (Figure. 1). On a more serious note, the script can illuminate imbalances in research location, which can have serious social implications and dire consequences for the integrity of the research as conclusions are weaker and more dangerous when certain populations or areas are underrepresented. 
+### Fig. 1
+![text](https://github.com/KLaFleur/Science-Maps/blob/master/Earthq%2Bvolcanoes.png)
 
 
 ## Overview

@@ -1,6 +1,10 @@
 # Science-Maps
 
 
+## Usage
+I wrote this script as a tool to discover trends in research practices. These insights are meaningful on a few levels. For one, it's fun to check out patterns in research for certain animals, plants, or geographical features (Figure. 1). On a more serious note, the script can illuminate imbalances in research location, which can have serious social implications and dire consequences for the integrity of the research as conclusions are weaker and more dangerous when certain populations or areas are underrepresented. 
+
+
 ## Overview
 This project takes as input a search for something that would be the 
 subject of scientific research and a number of articles to scrape from, and returns a csv of locations found in the abstracts of the articles returned by the desired search (using [sciencedirect.com](sciencedirect.com) ). 
@@ -9,16 +13,14 @@ imports the csv to google maps. An example map with a few different
 searches can be found [here](https://drive.google.com/open?id=1uSapi_Us20bfaV65zegpFPFT6kr9oFDk&usp=sharing).
 
 
-## Usage
-I wrote this script as a tool to discover trends in research practices. These insights are meaningful on a few levels. For one, it's fun to check out patterns in research for certain animals, plants, or geographical features (Figure. 1). On a more serious note, the script can illuminate imbalances in research location, which can have serious social implications and dire consequences for the integrity of the research.
-
-
-
-
-
 ## Next Steps  
 
-* Integrate a named entity recognition tool, such as the [Stanford Natural Language Processing group]'s (https://nlp.stanford.edu/) [Named Entity Recognizer](https://nlp.stanford.edu/software/CRF-NER.html) coupled with the geocoding function of the [Google Maps API](https://developers.google.com/maps/) to detect and get coordinates for locations that aren't loaded into the dictionary. 
+### looking for bias
+* Look into using [sentiment analysis] (https://en.wikipedia.org/wiki/Sentiment_analysis) to expose patterns in attitudes around polarizing topics like mental illness as they relate to location.
+
+### improving existing functions
+
+* Integrate a named entity recognition tool, such as the [Stanford Natural Language Processing group's] (https://nlp.stanford.edu/) [Named Entity Recognizer](https://nlp.stanford.edu/software/CRF-NER.html) coupled with the geocoding function of the [Google Maps API](https://developers.google.com/maps/) to detect and get coordinates for locations that aren't loaded into the dictionary. 
 
 * Add support for protected areas, mountain ranges, and forests around the world(only U.S. National parks are supported as of now)
 

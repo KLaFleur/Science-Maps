@@ -38,6 +38,26 @@ def addCities():
 	
 	cities.close()
 
+#adds national park data to dict 
+def addNatlParks ():
+	with open ("nationalparkcentriods.csv", "r") as parks:
+		for line in parks:
+			
+			tokens = [0] * 20
+			i = 0
+			for word in line.split(","):
+				tokens[i] = word
+				i = i + 1
+			pass
+			
+			dict[tokens[5]] = ( str(tokens[0]) + ","  + str(tokens[1])  )
+
+		pass
+	
+
+
+	parks.close()
+
 
 
 #given a search, returns the link to the search results page
@@ -201,10 +221,11 @@ def searchScrape (search, numResults): #numResults just supports multiples of 10
 dict = {"United states" : '37.09024,-95.712891'}
 addCountries()
 addCities()
+#addNatlParks()
 print(dict)
 
 
-searchScrape('subduction', 600)	
+searchScrape('depression', 900)	
 
 #Write as function?
 f = open("abstracts.txt", "r" )

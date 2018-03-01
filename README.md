@@ -26,19 +26,17 @@ Combined results from searches on "volcanoes" and "earthquakes" clearly outline 
 ### improving existing functions
 
 * Integrate a named entity recognition tool, such as the [Stanford Natural Language Processing group's](https://nlp.stanford.edu/) [Named Entity Recognizer](https://nlp.stanford.edu/software/CRF-NER.html) coupled with the geocoding function of the [Google Maps API](https://developers.google.com/maps/) to detect and get coordinates for locations that aren't loaded into the dictionary.
-
 * Add support for protected areas, mountain ranges, and forests around the world(only U.S. National parks are supported as of now)
 * Automate the mapping step 
-
 * Look into an issue where the scraper returns 404 errors on ~25% of links it runs
-
 * Link location results to the title of the article that they came from 
+
+### Literature mapping project 
+I'm currently working on a project that is designed to take in pieces or collections of literature (or just text files for that matter), determine locations mentioned throughout the work, and map them(with [D3](https://d3js.org/) or the [Google Maps API](https://developers.google.com/maps/)) with respect to mention frequency and their relation to each other in time.
+
 
 ### looking for bias
 * investigate options for using techniques like [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) to expose patterns in attitudes around polarizing topics like mental illness as they relate to location. I'm particularly inspired by Sabrina Lee, David Bamman, and Ted Underwood's paper [The Transformation of Gender in English-Language Fiction](https://hcommons.org/deposits/objects/hc:18128/datastreams/CONTENT/content).
-​	
-
-
 
 
 

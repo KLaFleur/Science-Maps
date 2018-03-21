@@ -1,6 +1,6 @@
 import bs4 as bs 
 import urllib.request
-import googlemaps
+#import googlemaps
 import csv
 
 #loads a list of countries into a python dictonary 'dict'
@@ -225,7 +225,7 @@ addCities()
 print(dict)
 
 
-searchScrape('depression', 900)	
+searchScrape('music+cognition', 900)	
 
 #Write as function?
 f = open("abstracts.txt", "r" )

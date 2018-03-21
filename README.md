@@ -13,7 +13,7 @@ I wrote this script as a tool to discover trends in research practices. These in
 ### Fig. 1
 
 Combined results from searches on "volcanoes" and "earthquakes" clearly outline some tectonic plate boundaries
-![text](earthq+volcanoes.png)
+![text](https://github.com/KLaFleur/Science-Maps/blob/master/Earthq%2Bvolcanoes.png)
 
 ### Fig. 2
 

@@ -17,7 +17,7 @@ Combined results from searches on "volcanoes" and "earthquakes" clearly outline 
 
 ### Fig. 2
 
-A search on "music cognition"(900) shows a clear bias towards the western world. 
+A search on "music cognition"(900) shows a clear imbalance where the vast majority of results are in North america and Europe. 
 
 ![text](music+cognition.png)
 

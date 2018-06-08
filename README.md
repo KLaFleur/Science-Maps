@@ -45,8 +45,7 @@ A search on "music cognition"(900) shows a clear bias towards the western world.
 I'm currently working on a project that is designed to take in pieces or collections of literature (or just text files for that matter), determine locations mentioned throughout the work, and map them(with [D3](https://d3js.org/) or the [Google Maps API](https://developers.google.com/maps/)) with respect to mention frequency and their relation to each other in time.
 
 
-### looking for bias
-* investigate options for using techniques like [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) to expose patterns in attitudes around polarizing topics like mental illness as they relate to location. I'm particularly inspired by Sabrina Lee, David Bamman, and Ted Underwood's paper [The Transformation of Gender in English-Language Fiction](https://hcommons.org/deposits/objects/hc:18128/datastreams/CONTENT/content).
+
 
 
 
